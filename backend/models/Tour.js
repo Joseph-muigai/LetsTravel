@@ -37,8 +37,8 @@ const tourSchema = new mongoose.Schema(
     },
     reviews: [
       {
-        type: String,
-        required: true,
+        type: mongoose.Types.ObjectId,
+        ref: "Review",
       },
     ],
     featured: {
