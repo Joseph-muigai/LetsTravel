@@ -8,6 +8,8 @@ import heroVideo from "../assets/images/hero-video.mp4";
 import worldImg from "../assets/images/world.png";
 import Subtitle from "../shared/Subtitle";
 import SearchBox from "../shared/SearchBox";
+import Services from "../services/Services";
+import FeaturedTourList from "../components/Featured-tours/FeaturedTourList";
 const Home = () => {
   return (
     <>
@@ -55,6 +57,35 @@ const Home = () => {
         </Container>
       </section>
       {/* -------hero section end------- */}
+      {/* -------services section------- */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg="3">
+              <h5 className="services__subtitle">What we offer</h5>
+              <h2 className="services__title">We offer the best services</h2>
+            </Col>
+            <Services />
+          </Row>
+        </Container>
+      </section>
+      {/* -------services section end------- */}
+
+      {/* -------featured Tours section -------*/}
+      <section>
+        <Container>
+          <Row>
+            <Col lg="12" className="mb-5">
+              <Subtitle subtitle={"Explore the world"} />
+              <h2 className="featured__tour-title">
+                Our Featured Tours Packages
+              </h2>
+            </Col>
+            <FeaturedTourList />
+          </Row>
+        </Container>
+      </section>
+      {/* -------featured Tours section end ------- */}
     </>
   );
 };
