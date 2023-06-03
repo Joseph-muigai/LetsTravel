@@ -14,6 +14,7 @@ import FeaturedTourList from "../components/Featured-tours/FeaturedTourList";
 import MansonryImagesGallery from "../components/image-gallery/MansonryImagesGallery";
 import Testimonial from "../components/Testimonial/Testimonial";
 import NewsLetter from "../shared/NewsLetter";
+
 const Home = () => {
   return (
     <>
