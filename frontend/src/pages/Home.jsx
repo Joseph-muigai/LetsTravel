@@ -12,6 +12,8 @@ import SearchBox from "../shared/SearchBox";
 import Services from "../services/Services";
 import FeaturedTourList from "../components/Featured-tours/FeaturedTourList";
 import MansonryImagesGallery from "../components/image-gallery/MansonryImagesGallery";
+import Testimonial from "../components/Testimonial/Testimonial";
+import NewsLetter from "../shared/NewsLetter";
 const Home = () => {
   return (
     <>
@@ -142,7 +144,25 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-      {/* --------gallery section end -------  */}
+      {/* -------gallery section end -------  */}
+      {/* -------testimonial section ------- */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg="12">
+              <Subtitle subtitle={"Testimonial"} />
+              <h2 className="testimonial__title">
+                What our clients say about us
+              </h2>
+            </Col>
+            <Col lg="12">
+              <Testimonial />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      {/* -------testimonial section end ------- */}
+      <NewsLetter />
     </>
   );
 };
