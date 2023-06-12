@@ -19,7 +19,7 @@ const Testimonial = () => {
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slideToScroll: 1,
           infinite: true,
           dots: true,
@@ -46,7 +46,7 @@ const Testimonial = () => {
         <div className="d-flex align-items-center gap-4 mt-3">
           <img src={ava01} className="w-25 h-25 rounded-2" alt="" />
           <div className="">
-            <h6 className="mb-0 mt-3">John Doe</h6>
+            <h6 className="mb-0 mt-3">Chandler Bing</h6>
             <p>Customer</p>
           </div>
         </div>
