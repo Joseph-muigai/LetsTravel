@@ -4,11 +4,19 @@ import Tour from "../models/Tour.js";
 // @route   GET /api/tours
 // @access  Public
 const getTours = async (req, res) => {
+  // pagination
+  const page = parseInt(req.query.page);
+
+  console.log(page);
+
   try {
-    const tours = await Tour.find({});
+    const tours = await Tour.find({})
+      .skip(page * 8)
+      .limit(8);
 
     res.status(200).json({
       success: true,
+      count: tours.length,
       message: "Tours found",
       data: tours,
     });
