@@ -1,3 +1,4 @@
+import { parse } from "dotenv";
 import Tour from "../models/Tour.js";
 
 // @desc    Get all tours
@@ -125,4 +126,36 @@ const deleteTour = async (req, res) => {
   }
 };
 
-export { getTours, getTourById, createTour, updateTour, deleteTour };
+// @desc    Get tour by search
+// @route   GET /api/tours/search
+// @access  Public
+const getTourBySearch = async (req, res) => {
+  // i -means case insensitive
+  const city = new RegExp(req.query.city, "i");
+  const distance = parseInt(req.query.distance);
+  const maxGroupSize = parseInt(req.query.maxGroupSize);
+
+  try {
+    const tours = await Tour.find({
+      city,
+      distance: { $gte: distance }, //gte - greater than or equal
+      maxGroupSize: { $gte: maxGroupSize },
+    });
+    res.status(200).json({
+      success: true,
+      message: "Tours found",
+      data: tours,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export {
+  getTours,
+  getTourById,
+  createTour,
+  updateTour,
+  deleteTour,
+  getTourBySearch,
+};
