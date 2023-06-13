@@ -2,7 +2,7 @@ import { parse } from "dotenv";
 import Tour from "../models/Tour.js";
 
 // @desc    Get all tours
-// @route   GET /api/tours
+// @route   GET /tours
 // @access  Public
 const getTours = async (req, res) => {
   // pagination
@@ -27,7 +27,7 @@ const getTours = async (req, res) => {
 };
 
 // @desc    Get single tour
-// @route   GET /api/tours/:id
+// @route   GET /tours/:id
 // @access  Public
 const getTourById = async (req, res) => {
   try {
@@ -44,7 +44,7 @@ const getTourById = async (req, res) => {
 };
 
 // @desc    Create tour
-// @route   POST /api/tours
+// @route   POST /tours
 // @access  Private/Admin
 const createTour = async (req, res) => {
   try {
@@ -74,7 +74,7 @@ const createTour = async (req, res) => {
 };
 
 // @desc    Update tour
-// @route   PUT /api/tours/:id
+// @route   PUT /tours/:id
 // @access  Private/Admin
 const updateTour = async (req, res) => {
   const id = req.params.id;
@@ -99,7 +99,7 @@ const updateTour = async (req, res) => {
 };
 
 // @desc    Delete tour
-// @route   DELETE /api/tours/:id
+// @route   DELETE /tours/:id
 // @access  Private/Admin
 const deleteTour = async (req, res) => {
   const id = req.params.id;
@@ -127,7 +127,7 @@ const deleteTour = async (req, res) => {
 };
 
 // @desc    Get tour by search
-// @route   GET /api/tours/search
+// @route   GET /tours/search
 // @access  Public
 const getTourBySearch = async (req, res) => {
   // i -means case insensitive
@@ -151,6 +151,36 @@ const getTourBySearch = async (req, res) => {
   }
 };
 
+// @desc    Get featured tours
+// @route   GET /tours/featured
+// @access  Public
+
+const getFeaturedTours = async (req, res) => {
+  try {
+    const tours = await Tour.find({ featured: true }).limit(8);
+    res.status(200).json({
+      success: true,
+      message: "Tours found",
+      data: tours,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+// get tour counts
+
+const getTourCount = async (req, res) => {
+  try {
+    const tourCount = await Tour.estimatedDocumentCount();
+    res.status(200).json({
+      success: true,
+      data: tourCount,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 export {
   getTours,
   getTourById,
@@ -158,4 +188,6 @@ export {
   updateTour,
   deleteTour,
   getTourBySearch,
+  getFeaturedTours,
+  getTourCount,
 };
