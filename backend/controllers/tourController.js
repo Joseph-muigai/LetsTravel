@@ -1,4 +1,3 @@
-import { parse } from "dotenv";
 import Tour from "../models/Tour.js";
 
 // @desc    Get all tours
@@ -12,6 +11,7 @@ const getTours = async (req, res) => {
 
   try {
     const tours = await Tour.find({})
+      .populate("reviews")
       .skip(page * 8)
       .limit(8);
 
@@ -31,7 +31,7 @@ const getTours = async (req, res) => {
 // @access  Public
 const getTourById = async (req, res) => {
   try {
-    const tour = await Tour.findById(req.params.id);
+    const tour = await Tour.findById(req.params.id).populate("reviews");
 
     res.status(200).json({
       success: true,
@@ -140,7 +140,7 @@ const getTourBySearch = async (req, res) => {
       city,
       distance: { $gte: distance }, //gte - greater than or equal
       maxGroupSize: { $gte: maxGroupSize },
-    });
+    }).populate("reviews");
     res.status(200).json({
       success: true,
       message: "Tours found",
@@ -157,7 +157,9 @@ const getTourBySearch = async (req, res) => {
 
 const getFeaturedTours = async (req, res) => {
   try {
-    const tours = await Tour.find({ featured: true }).limit(8);
+    const tours = await Tour.find({ featured: true })
+      .populate("reviews")
+      .limit(8);
     res.status(200).json({
       success: true,
       message: "Tours found",

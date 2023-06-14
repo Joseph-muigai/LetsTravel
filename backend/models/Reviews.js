@@ -6,9 +6,9 @@ const reviewSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Tour",
     },
-    userId: {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
+    username: {
+      type: String,
+      required: true,
     },
     reviewText: {
       type: String,
@@ -24,4 +24,4 @@ const reviewSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-export default mongoose.Schema("Review", reviewSchema);
+export default mongoose.model("Review", reviewSchema);
