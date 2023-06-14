@@ -7,6 +7,7 @@ import toursRouter from "./routers/tours.js";
 import usersRouter from "./routers/user.js";
 import authRouter from "./routers/auth.js";
 import reviewRouter from "./routers/reviews.js";
+import bookingRouter from "./routers/booking.js";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
@@ -45,6 +46,7 @@ app.use("/auth", authRouter);
 app.use("/tours", toursRouter);
 app.use("/users", usersRouter);
 app.use("/review", reviewRouter);
+app.use("/booking", bookingRouter);
 
 app.listen(port, () => {
   connect();
