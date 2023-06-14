@@ -10,6 +10,10 @@ import authRouter from "./routers/auth.js";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
+const corsOptions = {
+  origin: true,
+  credentials: true,
+};
 
 // testing testing
 app.get("/", (req, res) => {
@@ -17,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 // connect to mongodb
+
 mongoose.set("strictQuery", false);
 const connect = async () => {
   try {
@@ -33,8 +38,8 @@ const connect = async () => {
 };
 
 // middleware
-app.use(cors());
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use("/auth", authRouter);
 app.use("/tours", toursRouter);

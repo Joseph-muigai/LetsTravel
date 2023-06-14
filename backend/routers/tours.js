@@ -12,8 +12,10 @@ import {
 
 const router = express.Router();
 
+import { verifyUser, verifyAdmin } from "../utils/verifyToken.js";
+
 // create tour
-router.post("/", createTour);
+router.post("/", verifyAdmin, createTour);
 // get all tours
 router.get("/", getTours);
 // get tour by id
@@ -23,9 +25,9 @@ router.get("/search/getTourBySearch", getTourBySearch);
 // get featured tours
 router.get("/search/getFeaturedTours", getFeaturedTours);
 // update tour
-router.put("/:id", updateTour);
+router.put("/:id", verifyAdmin, updateTour);
 // delete tour
-router.delete("/:id", deleteTour);
+router.delete("/:id", verifyAdmin, deleteTour);
 // get tour counts
 router.get("/search/getTourCount", getTourCount);
 

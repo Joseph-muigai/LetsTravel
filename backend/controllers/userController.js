@@ -20,7 +20,7 @@ const getUsers = async (req, res) => {
 
 // @desc    Get single user
 // @route   GET /users/:id
-// @access  Private/Admin
+// @access  Private/Admin ||the actual user
 const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -62,7 +62,7 @@ const createUser = async (req, res) => {
 
 // @desc    Update user
 // @route   PUT /users/:id
-// @access  Private/Admin
+// @access  Private/Admin ||the actual user
 const updateUser = async (req, res) => {
   const id = req.params.id;
   try {
